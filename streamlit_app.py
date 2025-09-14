@@ -4,7 +4,14 @@ import streamlit as st
 import joblib
 import os
 import numpy as np
-
+import nltk
+# download required datasets quietly (only if not present)
+for resource in ["punkt", "wordnet", "omw-1.4", "stopwords"]:
+    try:
+        nltk.data.find(resource)
+    except LookupError:
+        nltk.download(resource, quiet=True)
+        
 # --- CONFIG ---
 PIPELINE_PATH = "sentiment_pipeline_raw_bigram.joblib"
 MAX_TEXT_LENGTH = 2000
@@ -90,4 +97,5 @@ if st.button("Predict"):
         # Show a download button for results as CSV
         csv = df.to_csv(index=False).encode("utf-8")
         st.download_button("Download results (CSV)", csv, file_name="predictions.csv", mime="text/csv")
+
 
