@@ -1,4 +1,5 @@
 # streamlit_app.py
+from preprocessing import TextCleaner, LemmaTokenizer
 import streamlit as st
 import joblib
 import os
@@ -89,3 +90,4 @@ if st.button("Predict"):
         # Show a download button for results as CSV
         csv = df.to_csv(index=False).encode("utf-8")
         st.download_button("Download results (CSV)", csv, file_name="predictions.csv", mime="text/csv")
+
