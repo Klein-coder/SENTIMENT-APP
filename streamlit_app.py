@@ -39,7 +39,7 @@ def normalize_contractions_to_training(text: str) -> str:
 
 NEG_OVERRIDE = {
     "dont like", "do not like", "didnt like", "cannot stand",
-    "not worth", "not good", "not recommend", "not happy"
+    "not worth", "not good", "not recommend", "not happy","worst"
 }
 def postprocess(text: str, pred: int, prob_positive: float):
     txt = normalize_contractions_to_training(text)
@@ -126,4 +126,5 @@ if st.button("Predict"):
         # CSV download
         csv = df.to_csv(index=False).encode("utf-8")
         st.download_button("Download results (CSV)", csv, file_name="predictions.csv", mime="text/csv")
+
 
